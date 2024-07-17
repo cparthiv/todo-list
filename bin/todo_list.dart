@@ -3,7 +3,8 @@ import 'dart:io';
 
 Future<void> main(List<String> arguments) async {
   List<String> tasks = [];
-  while (true) {
+  bool running = true;
+  while (running) {
     print("\x1B[2J\x1B[0;0H");
     todo_list.viewTasks(tasks);
     print('---------------');
@@ -27,7 +28,8 @@ Future<void> main(List<String> arguments) async {
         await todo_list.saveTasksToFile(tasks);
         continue;
       case '4':
-        break;
+        print("\x1B[2J\x1B[0;0H");
+        running = false;
     }
   }
 }
