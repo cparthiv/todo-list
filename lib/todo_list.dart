@@ -19,3 +19,21 @@ void viewTasks(List<String> tasks) {
   }
   print('\n');
 }
+
+void deleteTasks(List<String> tasks) {
+  if (tasks.isEmpty) {
+    print('No tasks to delete');
+    return;
+  }
+  print('Enter the task number to delete: ');
+  String? lineNumber = stdin.readLineSync();
+  int? taskNumber = int.tryParse(lineNumber ?? '');
+  if (taskNumber != null && taskNumber > 0 && taskNumber <= tasks.length) {
+    tasks.removeAt(taskNumber - 1);
+    print('Task $lineNumber removed successfully!');
+    return;
+  } else {
+    print('Invalid input!');
+    return;
+  }
+}
