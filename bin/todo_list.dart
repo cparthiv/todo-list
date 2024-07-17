@@ -1,5 +1,4 @@
 import 'package:todo_list/todo_list.dart' as todo_list;
-import 'dart:io';
 
 void main(List<String> arguments) {
   List<String> tasks = [];
