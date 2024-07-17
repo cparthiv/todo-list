@@ -1,7 +1,7 @@
 import 'package:todo_list/todo_list.dart' as todo_list;
 import 'dart:io';
 
-void main(List<String> arguments) {
+Future<void> main(List<String> arguments) async {
   List<String> tasks = [];
   while (true) {
     print("\x1B[2J\x1B[0;0H");
@@ -10,8 +10,10 @@ void main(List<String> arguments) {
     print('Options: ');
     print('1: Add task');
     print('2: Delete task');
-    print('3: Save tasks to file');
-    print('4: Exit program');
+    print('3: Save tasks to "tasks.txt" file');
+    print('4: Exit program\n');
+
+    stdout.write('Choose an option: ');
 
     String? option = stdin.readLineSync();
     switch (option) {
@@ -22,7 +24,7 @@ void main(List<String> arguments) {
         todo_list.deleteTasks(tasks);
         continue;
       case '3':
-        todo_list.saveTasksToFile(tasks);
+        await todo_list.saveTasksToFile(tasks);
         continue;
       case '4':
         break;

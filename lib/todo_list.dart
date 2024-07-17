@@ -38,13 +38,14 @@ void deleteTasks(List<String> tasks) {
   }
 }
 
-void saveTasksToFile(List<String> tasks) async {
+Future<void> saveTasksToFile(List<String> tasks) async {
   final file = File('tasks.txt');
   final sink = file.openWrite();
   List<int> taskIndices = List.generate(tasks.length, (i) => i);
   for (final int index in taskIndices) {
     String friendlyIndex = (index + 1).toString();
-    sink.writeln('$friendlyIndex: $tasks[index]');
+    String task = tasks[index];
+    sink.writeln('$friendlyIndex: $task');
   }
   await sink.flush();
   await sink.close();
